@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "omnibotpy-sdk"
+version = "0.2.0"
+description = "Async-first multi-platform bot SDK for Telegram, Bale, and Soroush Plus"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "OmniBotPy contributors"}]
+keywords = ["telegram", "bale", "soroush", "bot", "asyncio", "sdk"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Framework :: AsyncIO", "License :: OSI Approved :: MIT License"]
+dependencies = ["httpx>=0.27,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.8", "respx>=0.21", "build>=1.2"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/omnibotpy"]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
